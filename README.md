@@ -42,6 +42,10 @@ pre-commit install
 ### Running Tests
 
 ```bash
+cp .env.sample .env.test
+```
+
+```bash
 bundle exec rspec
 ```
 

@@ -10,7 +10,7 @@ class OpenWeatherService
   end
 
   def call
-    open_weather_response = HTTParty.get("https://api.openweathermap.org/data/2.5/weather?lat=#{11214523}&lon=#{longitude}&appid=#{OPEN_WEATHER_API_KEY}")
+    open_weather_response = HTTParty.get("https://api.openweathermap.org/data/2.5/weather?lat=#{latitude}&lon=#{longitude}&appid=#{OPEN_WEATHER_API_KEY}")
 
     json_response = JSON.parse(open_weather_response.body)
 
