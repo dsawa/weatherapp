@@ -1,6 +1,5 @@
 require_relative "boot"
 
-# Replace rails/all with only needed frameworks
 require "rails"
 # Pick the frameworks you want:
 require "active_model/railtie"
@@ -37,5 +36,10 @@ module Weatherapp
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    #
+    config.use_active_record = false
+    config.cache_store = :memory_store
+    config.active_job.queue_adapter = :async
+    config.action_cable.mount_path = nil
   end
 end

@@ -1,12 +1,13 @@
 source "https://rubygems.org"
 
+ruby file: ".ruby-version"
+
 # Demo dependencies
 gem "httparty", "~> 0.22.0"
 gem "dotenv", "~> 3.1"
 gem "rubocop", "1.71.2"
 gem "rubocop-rails", require: false
 gem "rubocop-rspec", "~> 3.4", require: false
-
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 8.0.1"
@@ -32,9 +33,9 @@ gem "jbuilder"
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 
 # Use the database-backed adapters for Rails.cache, Active Job, and Action Cable
-gem "solid_cache"
-gem "solid_queue"
-gem "solid_cable"
+# gem "solid_cache"
+# gem "solid_queue"
+# gem "solid_cable"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
@@ -57,7 +58,7 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
-  gem "rspec", "~> 3.13"
+  gem "rspec-rails", "~> 7.1"
 end
 
 group :development do
