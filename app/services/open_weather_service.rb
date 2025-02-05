@@ -1,6 +1,6 @@
 class OpenWeatherService
   OPEN_WEATHER_API_KEY = ENV.fetch("OPEN_WEATHER_API_KEY")
-  Error = StandardError.new
+  Error = Class.new(StandardError)
 
   attr_reader :latitude, :longitude
 
@@ -10,11 +10,12 @@ class OpenWeatherService
   end
 
   def call
-    response = HTTParty.get("https://api.openweathermap.org/data/2.5/weather?lat=#{latitude}&lon=#{longitude}&appid=#{OPEN_WEATHER_API_KEY}")
+    open_weather_response = HTTParty.get("https://api.openweathermap.org/data/2.5/weather?lat=#{11214523}&lon=#{longitude}&appid=#{OPEN_WEATHER_API_KEY}")
 
-    raise Error, "Bad Response" if response["status"] != 200
+    json_response = JSON.parse(open_weather_response.body)
 
+    raise Error, json_response["message"] if open_weather_response.code != 200
 
-    response
+    json_response.with_indifferent_access
   end
 end

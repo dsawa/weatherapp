@@ -1,21 +1,23 @@
 class LocationsController < ApplicationController
-  def show
-  end
-
   def new
+    @weather = LocationWeather.new(flash[:temperature]) if flash[:temperature]
   end
 
   def create
-    form_object = LocationFormObject.new(location_params[:latitude], location_params[:longitude])
+    form_object = CreateLocationWeather.new(location_params[:latitude], location_params[:longitude])
 
     if form_object.valid?
       response = OpenWeatherService.new(form_object).call
-      @weather = LocationWeather.new(response["main"]["temp"])
-      render :new, notice: "Success"
+      flash[:temperature] = response.dig(:main, :temp)
+      redirect_to new_locations_path
     else
       flash[:alert] = "Bad latitude or longitude."
-      render :new
+      redirect_to new_locations_path
     end
+
+  rescue OpenWeatherService::Error => e
+    flash[:alert] = e.message
+    redirect_to new_locations_path
   end
 
   private

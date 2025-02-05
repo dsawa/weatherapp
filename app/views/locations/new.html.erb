@@ -1,25 +1,25 @@
-<p>
-54.61431727247795
-    18.323355542425748
-</p>
-
 <% if @weather.present? %>
 <p>
-    Temperature:  <%= @weather['main']['temp'] %>
+    Your temperature: <%= @weather.temp %>
 </p>
 <% end %>
 
+<% flash.each do |key, value| %>
+<div class="alert alert-<%= key %>">
+    <%= value %>
+</div>
+<% end %>
 
 <%= form_with(url: locations_path, method: :post, local: true) do |form| %>
- <div>
-   <%= text_field_tag 'latitude', nil, placeholder: 'Enter Latitude term...' %>
- </div>
+<div>
+    <%= text_field_tag 'latitude', nil, placeholder: 'Enter Latitude term...' %>
+</div>
 
- <div>
-   <%= text_field_tag 'longitude', nil, placeholder: 'Enter Longitude term...' %>
- </div>
+<div>
+    <%= text_field_tag 'longitude', nil, placeholder: 'Enter Longitude term...' %>
+</div>
 
- <div>
-   <%= submit_tag "Submit" %>
- </div>
+<div>
+    <%= submit_tag "Submit" %>
+</div>
 <% end %>
