@@ -5,7 +5,7 @@ RSpec.describe OpenWeatherService do
   let(:longitude) { -74.0060 }
   let(:api_key) { 'TEST_FAKE_KEY' }
   let(:location) { double(latitude: latitude, longitude: longitude) }
-  
+
   subject(:service) { described_class.new(location) }
 
   before do
@@ -20,16 +20,16 @@ RSpec.describe OpenWeatherService do
   end
 
   describe '#call' do
-    let(:api_url) { "https://api.openweathermap.org/data/2.5/weather?lat=#{latitude}&lon=#{longitude}&appid=#{api_key}"}
+    let(:api_url) { "https://api.openweathermap.org/data/2.5/weather?lat=#{latitude}&lon=#{longitude}&appid=#{api_key}" }
 
     context 'when the API call is successful' do
-      let(:weather_data) do 
+      let(:weather_data) do
         JSON.parse(File.read(Rails.root.join('spec', 'support', 'fixtures', 'open_weather_valid_response.json')))
       end
 
       before do
         stub_request(:get, api_url).
-        with(headers: { 'Accept'=>'*/*', 'User-Agent'=>'Ruby'}).to_return(status: 200, body: weather_data.to_json)
+        with(headers: { 'Accept'=>'*/*', 'User-Agent'=>'Ruby' }).to_return(status: 200, body: weather_data.to_json)
       end
 
       it 'returns parsed weather data' do
