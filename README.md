@@ -1,6 +1,17 @@
 # WeatherApp
 
-Super awesome app to check Your temperature!
+### WIP
+Rails 8 for fun app - WIP.
+
+Roadmap:
+- Integrate React & Bootstrap for frontend
+- Show stimulus under different path
+- Show more weather stats
+- Integrate some diagram libraries
+
+
+Super awesome app to check weather conditions for given localization.
+
 
 ## Prerequisites
 
