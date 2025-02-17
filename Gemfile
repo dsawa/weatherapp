@@ -5,7 +5,7 @@ ruby file: ".ruby-version"
 # Demo dependencies
 gem "httparty", "~> 0.22.0"
 gem "dotenv", "~> 3.1"
-gem "rubocop", "1.71.2"
+gem "rubocop", "1.72.2"
 gem "rubocop-rails", require: false
 gem "rubocop-rspec", "~> 3.4", require: false
 
